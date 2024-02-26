@@ -1,0 +1,15 @@
+{
+    "name": "chethiyawanigarathne/mvc_with_routers",
+    "autoload": {
+        "psr-4": {
+            "app\\": "./"
+        }
+    },
+    "authors": [
+        {
+            "name": "cheyawanigs",
+            "email": "chethiya.wanigarathne@gmail.com"
+        }
+    ],
+    "require": {}
+}
