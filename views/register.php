@@ -1,5 +1,10 @@
 <h1>Create an account</h1>
-
+<?php
+//    echo '<pre>';
+//    var_dump($errors);
+//    echo '<pre>';
+//    die;
+//?>
 <form action="" method="post">
     <div class="mb-3">
         <label>First Name</label>
