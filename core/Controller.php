@@ -9,7 +9,6 @@ class Controller
         echo "<pre>";
         print_r($stuff);
         echo "</pre>";
-        die;
     }
     public string $layout = 'main';
     public function setLayout($layout)

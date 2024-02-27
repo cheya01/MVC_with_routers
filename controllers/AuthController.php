@@ -9,20 +9,21 @@ use app\core\Model;
 
 class AuthController extends Controller
 {
-    public function login()
+    public function login(): array|false|string
     {
         $this->setLayout('auth');
         return $this->render('login');
     }
-    public function register(Request $request)
+    public function register(Request $request): array|false|string
     {
         $registerModel = new RegisterModel();
         if ($request->isPost()) {
             $registerModel->loadData($request->getBody());
-            $this->show($registerModel);
+//            $this->show($registerModel);
             if($registerModel->validate() && $registerModel->register()){
                 return 'Success';
             }
+            $this->show($registerModel->errors);
             return $this->render('register', [
                 'model'=>$registerModel
             ]);
