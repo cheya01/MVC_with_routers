@@ -16,19 +16,20 @@ class AuthController extends Controller
     }
     public function register(Request $request)
     {
-        $errors = [];
+        $registerModel = new RegisterModel();
         if ($request->isPost()) {
-            $registerModel = new RegisterModel();
-            $firstname = $request->getBody()['firstname'];
-            if(!$firstname){
-                $errors['firstname'] = 'This field is required';
+            $registerModel->loadData($request->getBody());
+            $this->show($registerModel);
+            if($registerModel->validate() && $registerModel->register()){
+                return 'Success';
             }
-            $this->show($errors);
-            return 'Handle submitted data';
+            return $this->render('register', [
+                'model'=>$registerModel
+            ]);
         }
         $this->setLayout('auth');
         return $this->render('register', [
-            'errors' =>$errors
+            'model'=>$registerModel
         ]);
     }
 }
