@@ -12,7 +12,7 @@ class RegisterModel extends Model
     public string $password;
     public string $confirmPassword;
 
-    public function register()
+    public function register(): void
     {
         echo "creating new user";
     }
