@@ -73,7 +73,7 @@ abstract class Model
 
     }
 
-    public function hasErrors($attribute)
+    public function hasError($attribute)
     {
         return $this->errors[$attribute] ?? false;
     }
