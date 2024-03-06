@@ -5,6 +5,7 @@ use app\controllers\SiteController;
 use app\core\Application;
 
 require_once __DIR__ . '/../vendor/autoload.php';
+//load .env files
 $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
 $dotenv->load();
 
