@@ -12,10 +12,11 @@ abstract class DbModel extends Model
         $attributes = $this->attributes();
         $params = array_map(fn($attr) => ":$attr", $attributes);
         $statement = self::prepare("INSERT INTO $tableName (".implode(',', $attributes).") VALUES (".implode(',', $params).")");
-        echo '<pre>';
-        var_dump($statement,$params, $attributes);
-        echo '</pre>';
-        exit;
+        foreach ($attributes as $attribute) {
+            $statement->bindValue(":$attribute", $this->{$attribute});
+        }
+        $statement->execute();
+        return true;
     }
 
     public static function prepare($sql)
