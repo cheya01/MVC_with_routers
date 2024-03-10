@@ -11,6 +11,7 @@ class m0001_initial
             firstname VARCHAR(255) NOT NULL,
             lastname VARCHAR(255) NOT NULL,
             status TINYINT NOT NULL,
+            password VARCHAR(512) NOT NULL,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         ) ENGINE=INNODB;";
         $db->pdo->exec($SQL);
