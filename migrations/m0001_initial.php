@@ -1,5 +1,5 @@
 <?php
-namespace app\migrations;
+//namespace app\migrations;
 class m0001_initial
 {
     public function up()
