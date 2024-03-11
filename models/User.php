@@ -4,24 +4,31 @@ namespace app\models;
 
 use app\core\DbModel;
 use app\core\Model;
+use app\core\UserModel;
 
-class User extends DbModel
+class User extends UserModel
 {
     const STATUS_INACTIVE = 0;
     const STATUS_ACTIVE = 1;
     const STATUS_DELETED = 2;
+    public int $id = 0;
+    public string $created_at = '';
     public string $firstname = '';
     public string $lastname = '';
     public string $email = '';
-    public $status = self::STATUS_INACTIVE;
+    public int $status = self::STATUS_INACTIVE;
     public string $password = '';
     public string $confirmPassword = '';
     public function tableName() :string
     {
         return 'users';
     }
+    public function primaryKey() :string
+    {
+        return 'id';
+    }
 
-    public function save()
+    public function save(): true
     {
         $this->status = self::STATUS_INACTIVE;
         $this->password = password_hash($this->password, PASSWORD_DEFAULT);
@@ -57,4 +64,8 @@ class User extends DbModel
         ];
     }
 
+    public function getDisplayName(): string
+    {
+        return $this->firstname . ' ' . $this->lastname;
+    }
 }
