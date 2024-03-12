@@ -7,6 +7,7 @@ use app\models\User;
 class Application
 {
     public static string $ROOT_DIR;
+    public string $layout = 'main';
     public string $userClass;
     public Router $router;
     public Request $request;
@@ -15,7 +16,7 @@ class Application
     public Database $db;
     public ?DbModel $user;
     public static Application $app;
-    public Controller $controller;
+    public ?Controller $controller = null;
     public function __construct($rootPath, array $config)
     {
         $this->userClass = $config['userClass'];
@@ -41,7 +42,7 @@ class Application
 
     }
 
-    public static function isGuest()
+    public static function isGuest(): bool
     {
         return !self::$app->user;
     }
@@ -57,7 +58,14 @@ class Application
     }
     public function run(): void
     {
-        echo $this->router->resolve();
+        try {
+            echo $this->router->resolve();
+        } catch (\Exception $e) {
+            $this->response->setStatusCode($e->getCode());
+            echo $this->router->renderView('_error', [
+                'exception' => $e
+            ]);
+        }
     }
 
     public function login(DbModel $user): true

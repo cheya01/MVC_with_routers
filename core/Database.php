@@ -69,11 +69,11 @@ class Database
         $statement->execute();
     }
 
-    public function prepare($sql)
+    public function prepare($sql): false|\PDOStatement
     {
         return $this->pdo->prepare($sql);
     }
-    protected function log($message)
+    protected function log($message): void
     {
         echo '['.date('Y-m-d H:i:s').'] - '.$message.PHP_EOL;
     }
